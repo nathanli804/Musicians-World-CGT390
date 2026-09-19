@@ -1,13 +1,16 @@
 :root {
-  --bg: #0d0d0d;
-  --bg-alt: #1a1a1a;
-  --line: #333333;
-  --text: #f5f3ee;
-  --text-muted: #a89f93;
+  --bg: #ffffff;
+  --bg-alt: #fff6f2;
+  --line: #f0ddd3;
+  --text: #241a15;
+  --text-muted: #7a6d63;
   --accent: #ff5a1f;
   --accent-dark: #cc3d0e;
   --red: #e8291c;
   --red-dark: #a81d13;
+  --heading-shadow: 2px 3px 0 rgba(232, 41, 28, 0.15), 0 6px 18px rgba(255, 90, 31, 0.18);
+  --card-shadow: 0 2px 6px rgba(36, 26, 21, 0.06), 0 10px 24px rgba(255, 90, 31, 0.08);
+  --card-shadow-hover: 0 6px 14px rgba(36, 26, 21, 0.09), 0 16px 32px rgba(255, 90, 31, 0.16);
 
   --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -30,6 +33,15 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.5;
+}
+
+h1, h2, h3 {
+  background: linear-gradient(135deg, var(--accent), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--accent);
+  -webkit-text-fill-color: transparent;
+  text-shadow: var(--heading-shadow);
 }
 
 a {
@@ -58,15 +70,21 @@ button {
 
 .brand {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--text);
+  background: linear-gradient(135deg, var(--accent), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--accent);
+  -webkit-text-fill-color: transparent;
+  text-shadow: var(--heading-shadow);
   text-decoration: none;
   letter-spacing: 0.01em;
 }
 
 .brand span {
-  color: var(--accent);
+  color: var(--red-dark);
+  -webkit-text-fill-color: var(--red-dark);
 }
 
 .site-nav {
@@ -77,36 +95,39 @@ button {
 .site-nav a {
   text-decoration: none;
   font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text);
   padding-bottom: 0.2rem;
   border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .site-nav a:hover,
 .site-nav a.active {
+  color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
 /* Hero */
 .hero {
-  background: var(--bg-alt);
+  background: linear-gradient(160deg, var(--bg-alt), #ffffff);
   border: 1px solid var(--line);
   color: var(--text);
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 3rem 2.5rem;
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   max-width: 640px;
+  box-shadow: var(--card-shadow);
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   line-height: 1.15;
   margin: 0;
-  color: var(--text);
 }
 
 .hero p {
@@ -117,20 +138,22 @@ button {
 
 .hero-cta {
   align-self: flex-start;
-  background: var(--accent);
-  color: #0d0d0d;
+  background: linear-gradient(135deg, var(--accent), var(--red));
+  color: #ffffff;
   border: none;
-  padding: 0.7rem 1.4rem;
-  border-radius: 3px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 90, 31, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .hero-cta:hover {
-  background: var(--accent-dark);
-  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 90, 31, 0.45);
 }
 
 /* Featured category grid (asymmetric) */
@@ -143,14 +166,23 @@ button {
 }
 
 .category-tile {
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 1.25rem;
   display: flex;
   align-items: flex-end;
   text-decoration: none;
-  color: var(--text);
+  color: #ffffff;
   font-family: var(--font-display);
   font-size: 1.15rem;
+  font-weight: 700;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.category-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .category-tile.large {
@@ -164,26 +196,23 @@ button {
 }
 
 .tile-guitars {
-  background: var(--accent);
-  color: #0d0d0d;
+  background: linear-gradient(135deg, var(--accent), var(--red));
 }
 .tile-drums {
-  background: var(--red);
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
 }
 .tile-keyboards {
-  background: #7a2b0a;
+  background: linear-gradient(135deg, #a8471f, #7a2b0a);
 }
 .tile-pedals {
-  background: #2b2b2b;
-  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #3a3a3a, #1e1e1e);
 }
 
 /* Product grid */
 .section-heading {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   margin: 2.5rem 0 1.25rem;
-  color: var(--text);
 }
 
 .product-grid {
@@ -193,14 +222,21 @@ button {
 }
 
 .product-card {
-  background: var(--bg-alt);
+  background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
   overflow: hidden;
   text-decoration: none;
   color: var(--text);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .product-swatch {
@@ -208,7 +244,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   font-family: var(--font-display);
   font-size: 0.9rem;
 }
@@ -223,10 +260,16 @@ button {
 .product-card-body h3 {
   margin: 0;
   font-size: 1.05rem;
+  -webkit-text-fill-color: var(--text);
+  background: none;
+  text-shadow: none;
 }
 
 .product-card-body .price {
-  color: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
 
@@ -246,42 +289,46 @@ button {
 
 .product-detail .swatch-large {
   height: 320px;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
   font-family: var(--font-display);
   font-size: 1.1rem;
+  box-shadow: var(--card-shadow);
 }
 
 .product-info h1 {
   font-family: var(--font-display);
   margin: 0 0 0.25rem;
-  color: var(--text);
 }
 
 .product-info .category-label {
-  color: var(--accent);
+  color: var(--accent-dark);
   font-size: 0.85rem;
+  font-weight: 700;
   margin-bottom: 0.75rem;
 }
 
 .price-tag {
   display: inline-block;
-  background: var(--accent);
-  color: #0d0d0d;
+  background: linear-gradient(135deg, var(--accent), var(--red));
+  color: #ffffff;
   font-weight: 700;
-  padding: 0.4rem 0.9rem;
-  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   margin-bottom: 1.25rem;
+  box-shadow: 0 4px 10px rgba(255, 90, 31, 0.3);
 }
 
 .back-link {
   display: inline-block;
   margin-top: 1.5rem;
   font-size: 0.9rem;
-  color: var(--accent);
+  font-weight: 600;
+  color: var(--accent-dark);
   text-decoration: underline;
 }
 
@@ -293,20 +340,26 @@ button {
 }
 
 .lesson-card {
-  background: var(--bg-alt);
+  background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 1.25rem 1.5rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
   align-items: center;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .lesson-card h3 {
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
-  color: var(--text);
 }
 
 .lesson-card .blurb {
@@ -318,7 +371,8 @@ button {
 .lesson-meta {
   text-align: right;
   font-size: 0.88rem;
-  color: var(--accent);
+  font-weight: 700;
+  color: var(--accent-dark);
   line-height: 1.6;
 }
 
@@ -331,18 +385,21 @@ button {
 }
 
 .filter-panel {
-  background: var(--bg-alt);
+  background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 1.25rem;
   position: sticky;
   top: 1.5rem;
+  box-shadow: var(--card-shadow);
 }
 
 .filter-panel h2 {
   font-size: 1rem;
   margin: 0 0 0.9rem;
-  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  background: none;
+  text-shadow: none;
 }
 
 .filter-group {
@@ -351,9 +408,9 @@ button {
 
 .filter-group legend {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.4rem;
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .filter-group label {
