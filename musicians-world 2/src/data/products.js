@@ -6,6 +6,9 @@ export const products = [
     name: "Larkspur Custom Six",
     category: "Guitars",
     price: 899,
+    type: "electric",
+    rating: 4.7,
+    reviewCount: 64,
     blurb: "A bolt-on maple neck electric with a warm, rounded midrange.",
     description:
       "The Larkspur Custom Six pairs a lightweight ash body with a maple neck for a bright, articulate tone that still keeps its warmth in the low end. Dual humbuckers give it enough range to move between clean jazz voicings and driven rock tones without changing guitars.",
@@ -15,6 +18,10 @@ export const products = [
     name: "Ironwood Dreadnought",
     category: "Guitars",
     price: 429,
+    type: "acoustic",
+    rating: 4.5,
+    reviewCount: 112,
+    leftHanded: true,
     blurb: "A solid-top acoustic built for strummers who want projection.",
     description:
       "This dreadnought's solid spruce top opens up quickly, giving new players a full, room-filling sound without needing a heavy hand. The satin neck finish keeps chord changes fast, and the scalloped bracing adds a bit of extra bass response for accompaniment.",
@@ -24,6 +31,10 @@ export const products = [
     name: "Voss Electric Standard",
     category: "Guitars",
     price: 349,
+    type: "electric",
+    rating: 4.3,
+    reviewCount: 208,
+    leftHanded: true,
     blurb: "An entry-level solid body built around a single reliable pickup.",
     description:
       "The Voss Electric Standard is built for a first electric guitar: a single humbucker keeps the wiring simple and the tone consistent, and the slim neck profile makes basic chords and scales easier to reach for smaller hands.",
@@ -33,6 +44,9 @@ export const products = [
     name: "Halcyon Parlor Acoustic",
     category: "Guitars",
     price: 279,
+    type: "acoustic",
+    rating: 4.6,
+    reviewCount: 47,
     blurb: "A small-bodied acoustic suited to fingerstyle playing.",
     description:
       "Its parlor-sized body trades some low-end volume for a focused, balanced tone that responds well to fingerpicking. The shorter scale length also makes it a comfortable travel or practice guitar.",
@@ -42,6 +56,9 @@ export const products = [
     name: "Cascade 5-Piece Maple Kit",
     category: "Drums",
     price: 749,
+    type: "drumkit",
+    rating: 4.4,
+    reviewCount: 39,
     blurb: "A full maple shell kit with cymbals included, ready to play out of the box.",
     description:
       "The Cascade kit includes a bass drum, two toms, a floor tom, and a snare, all cut from maple for a bright, controlled attack. Basic cymbals and hardware are included, so this kit is meant to get a new drummer playing the same day it arrives.",
@@ -51,6 +68,9 @@ export const products = [
     name: "Ridgeline Snare",
     category: "Drums",
     price: 189,
+    type: "snare",
+    rating: 4.8,
+    reviewCount: 81,
     blurb: "A steel-shell snare with a crisp, cutting backbeat.",
     description:
       "Built with a steel shell for extra volume and attack, the Ridgeline Snare is a common upgrade for drummers who need their backbeat to sit above a full band mix.",
@@ -60,6 +80,9 @@ export const products = [
     name: "Overtone Practice Pad Set",
     category: "Drums",
     price: 89,
+    type: "pad",
+    rating: 4.2,
+    reviewCount: 156,
     blurb: "A quiet, portable pad set for building stick technique.",
     description:
       "Two rubber pads mounted on a folding stand let drummers work on rudiments and stick control without needing a full kit or worrying about volume.",
@@ -69,6 +92,9 @@ export const products = [
     name: "Meridian 61-Key Stage Piano",
     category: "Keyboards",
     price: 599,
+    type: "piano",
+    rating: 4.6,
+    reviewCount: 73,
     blurb: "A weighted 61-key stage piano with a built-in speaker system.",
     description:
       "Semi-weighted keys give a piano-like feel without the weight of a full 88-key instrument, and the onboard speakers mean it's playable straight out of the box, no amp required for practice.",
@@ -78,6 +104,9 @@ export const products = [
     name: "Aurora Compact Synth",
     category: "Keyboards",
     price: 349,
+    type: "synth",
+    rating: 4.5,
+    reviewCount: 58,
     blurb: "A 37-key analog-modeled synth built for quick sound design.",
     description:
       "The Aurora's knob-per-function layout is built for hands-on sound design rather than menu diving, making it a common pick for players who want to shape a patch quickly during a set.",
@@ -87,6 +116,9 @@ export const products = [
     name: "Fenwick Tube Combo 20W",
     category: "Pedals & Amps",
     price: 459,
+    type: "amp",
+    rating: 4.7,
+    reviewCount: 92,
     blurb: "A 20-watt tube combo amp that breaks up naturally at low volume.",
     description:
       "At 20 watts, the Fenwick combo can be pushed into natural tube breakup at bedroom-friendly volumes, which makes it popular for home recording as well as small stages.",
@@ -96,6 +128,9 @@ export const products = [
     name: "Driftwood Overdrive Pedal",
     category: "Pedals & Amps",
     price: 119,
+    type: "pedal",
+    rating: 4.4,
+    reviewCount: 134,
     blurb: "A transparent overdrive pedal that keeps your amp's core tone.",
     description:
       "Rather than reshaping the tone entirely, the Driftwood Overdrive adds grit while preserving the character of the amp it's plugged into, which makes it a flexible first overdrive pedal.",
@@ -105,6 +140,9 @@ export const products = [
     name: "Halden Reverb Tank",
     category: "Pedals & Amps",
     price: 159,
+    type: "pedal",
+    rating: 4.3,
+    reviewCount: 66,
     blurb: "A spring-style reverb pedal with a wide, adjustable decay.",
     description:
       "The Halden Reverb Tank emulates the splashy, slightly chaotic character of a spring reverb tank, with a decay control that ranges from a short slap to a long, ambient wash.",

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { usePageTitle } from "../lib/usePageTitle";
+import { categories, products } from "../data/products";
+
+const slug = (category) => category.toLowerCase().replace(/\s*&\s*/g, "-").replace(/\s+/g, "-");
 
 export default function Home() {
   usePageTitle("Musicians World: Guitars, Drums, Keyboards, Pedals & Amps");
+
   return (
     <>
       <section className="hero">
@@ -16,20 +20,24 @@ export default function Home() {
         </Link>
       </section>
 
-      <div className="category-grid">
-        <Link to="/browse?category=Guitars" className="category-tile large tile-guitars">
-          Guitars
-        </Link>
-        <Link to="/browse?category=Drums" className="category-tile tile-drums">
-          Drums
-        </Link>
-        <Link to="/browse?category=Keyboards" className="category-tile tile-keyboards">
-          Keyboards
-        </Link>
-        <Link to="/browse?category=Pedals+%26+Amps" className="category-tile wide tile-pedals">
-          Pedals &amp; Amps
-        </Link>
-      </div>
+      <nav className="category-strips" aria-label="Shop by category">
+        {categories.map((category) => {
+          const count = products.filter((p) => p.category === category).length;
+          return (
+            <Link
+              key={category}
+              to={`/browse?category=${encodeURIComponent(category)}`}
+              className="category-strip"
+              style={{ "--strip-image": `url(/categories/${slug(category)}.jpg)` }}
+            >
+              <span className="strip-name">{category}</span>
+              <span className="strip-count">
+                {count} {count === 1 ? "product" : "products"}
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
     </>
   );
 }

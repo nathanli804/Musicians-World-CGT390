@@ -7,6 +7,11 @@ import ProductDetail from "./pages/ProductDetail";
 import Lessons from "./pages/Lessons";
 import { track } from "./lib/analytics";
 
+function BrowseRoute() {
+  const location = useLocation();
+  return <Browse key={location.search} />;
+}
+
 function PageViewTracker() {
   const location = useLocation();
   const lastPath = useRef(null);
@@ -32,7 +37,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/browse" element={<Browse />} />
+          <Route path="/browse" element={<BrowseRoute />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/lessons" element={<Lessons />} />
         </Routes>

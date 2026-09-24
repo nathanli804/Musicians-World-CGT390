@@ -3,19 +3,53 @@ import { useParams, Link } from "react-router-dom";
 import { products } from "../data/products";
 import { track, toGaItem } from "../lib/analytics";
 import { usePageTitle } from "../lib/usePageTitle";
+import ProductArt from "../components/ProductArt";
+import StarRating from "../components/StarRating";
 
-const swatchClass = {
-  Guitars: "tile-guitars",
-  Drums: "tile-drums",
-  Keyboards: "tile-keyboards",
-  "Pedals & Amps": "tile-pedals",
+const catClass = {
+  Guitars: "cat-guitars",
+  Drums: "cat-drums",
+  Keyboards: "cat-keyboards",
+  "Pedals & Amps": "cat-pedals",
 };
+
+function useProductSchema(product) {
+  useEffect(() => {
+    if (!product) return;
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "product-jsonld";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      category: product.category,
+      sku: product.id,
+      url: window.location.origin + "/product/" + product.id,
+      offers: {
+        "@type": "Offer",
+        price: product.price.toFixed(2),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: product.rating,
+        reviewCount: product.reviewCount,
+      },
+    });
+    document.head.appendChild(script);
+    return () => script.remove();
+  }, [product]);
+}
 
 export default function ProductDetail() {
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
   const [added, setAdded] = useState(false);
   const lastViewed = useRef(null);
+  useProductSchema(product);
   usePageTitle(product ? `${product.name} | Musicians World` : "Item Not Found | Musicians World");
 
   useEffect(() => {
@@ -54,10 +88,13 @@ export default function ProductDetail() {
 
   return (
     <div className="product-detail">
-      <div className={`swatch-large ${swatchClass[product.category]}`}>{product.category}</div>
+      <div className={`product-art large ${catClass[product.category]}`}>
+        <ProductArt product={product} />
+      </div>
       <div className="product-info">
         <p className="category-label">{product.category}</p>
         <h1>{product.name}</h1>
+        <StarRating rating={product.rating} count={product.reviewCount} />
         <div className="price-tag">${product.price}</div>
         <p>{product.description}</p>
         <button className="add-to-cart" onClick={handleAddToCart} disabled={added}>
