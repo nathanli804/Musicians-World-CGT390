@@ -94,7 +94,12 @@ export default function ProductDetail() {
         <ProductArt product={product} />
       </div>
       <div className="product-info">
-        <p className="category-label">{product.category}</p>
+        <p className="category-label">
+          {product.category}
+          {product.category === "Guitars" &&
+            ` · ${product.type === "acoustic" ? "Acoustic" : "Electric"}`}
+        </p>
+        {product.leftHanded && <span className="badge detail-badge">Left-handed available</span>}
         <h1>{product.name}</h1>
         <StarRating rating={product.rating} count={product.reviewCount} />
         <div className="price-tag">${product.price}</div>

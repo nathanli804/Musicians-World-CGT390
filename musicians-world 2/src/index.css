@@ -860,9 +860,29 @@ input {
   margin-bottom: 1rem;
 }
 
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.type-tag {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #ebeae5;
+  color: var(--ink);
+  border-radius: var(--radius-control);
+}
+
+.detail-badge {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+}
+
 .badge {
   align-self: flex-start;
-  margin-top: 0.75rem;
   padding: 0.2rem 0.55rem;
   font-size: 0.78rem;
   font-weight: 600;

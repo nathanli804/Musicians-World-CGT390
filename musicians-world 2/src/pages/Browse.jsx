@@ -227,7 +227,16 @@ export default function Browse() {
                     <StarRating rating={product.rating} count={product.reviewCount} />
                     <span className="price">${product.price}</span>
                     <p className="blurb">{product.blurb}</p>
-                    {product.leftHanded && <span className="badge">Left-handed available</span>}
+                    {(product.category === "Guitars" || product.leftHanded) && (
+                      <div className="card-tags">
+                        {product.category === "Guitars" && (
+                          <span className="type-tag">
+                            {product.type === "acoustic" ? "Acoustic" : "Electric"}
+                          </span>
+                        )}
+                        {product.leftHanded && <span className="badge">Left-handed available</span>}
+                      </div>
+                    )}
                   </div>
                 </Link>
               ))}
