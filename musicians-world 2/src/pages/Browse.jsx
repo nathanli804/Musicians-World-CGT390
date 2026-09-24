@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import { track, toGaItem } from "../lib/analytics";
 import { products, categories } from "../data/products";
 
 const swatchClass = {
@@ -103,7 +104,17 @@ export default function Browse() {
           ) : (
             <div className="product-grid">
               {filteredProducts.map((product) => (
-                <Link key={product.id} to={`/product/${product.id}`} className="product-card">
+                <Link
+                  key={product.id}
+                  to={`/product/${product.id}`}
+                  className="product-card"
+                  onClick={() =>
+                    track("select_item", {
+                      item_list_name: "browse_results",
+                      items: [toGaItem(product)],
+                    })
+                  }
+                >
                   <div className={`product-swatch ${swatchClass[product.category]}`}>
                     {product.category}
                   </div>
