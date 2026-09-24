@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { track, toGaItem } from "../lib/analytics";
 import { products, categories } from "../data/products";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const swatchClass = {
   Guitars: "tile-guitars",
@@ -11,6 +12,7 @@ const swatchClass = {
 };
 
 export default function Browse() {
+  usePageTitle("Browse Gear | Musicians World");
   const [searchParams] = useSearchParams();
   const initialCategory = searchParams.get("category");
 

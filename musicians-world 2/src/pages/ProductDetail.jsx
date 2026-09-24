@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { products } from "../data/products";
 import { track, toGaItem } from "../lib/analytics";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const swatchClass = {
   Guitars: "tile-guitars",
@@ -15,6 +16,7 @@ export default function ProductDetail() {
   const product = products.find((p) => p.id === id);
   const [added, setAdded] = useState(false);
   const lastViewed = useRef(null);
+  usePageTitle(product ? `${product.name} | Musicians World` : "Item Not Found | Musicians World");
 
   useEffect(() => {
     setAdded(false);

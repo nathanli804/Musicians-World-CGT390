@@ -1,6 +1,8 @@
 import { lessons } from "../data/lessons";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function Lessons() {
+  usePageTitle("Lessons | Musicians World");
   return (
     <>
       <h1 className="section-heading">Lessons</h1>

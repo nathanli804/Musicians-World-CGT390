@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function Home() {
+  usePageTitle("Musicians World: Guitars, Drums, Keyboards, Pedals & Amps");
   return (
     <>
       <section className="hero">
