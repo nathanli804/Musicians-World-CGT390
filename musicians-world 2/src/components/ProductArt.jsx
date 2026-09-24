@@ -310,6 +310,37 @@ function UsbMic({ color }) {
   );
 }
 
+function KickPedal({ color }) {
+  return (
+    <g>
+      <rect x="26" y="196" width="148" height="10" rx="4" fill={INK} />
+      <path d="M44 196 L92 128 L104 132 L64 196 Z" fill={color} />
+      <path d="M112 196 L152 128 L164 132 L132 196 Z" fill={color} opacity="0.85" />
+      <rect x="84" y="72" width="8" height="64" rx="3" fill="#8d8d8d" />
+      <rect x="146" y="72" width="8" height="64" rx="3" fill="#8d8d8d" />
+      <circle cx="88" cy="64" r="13" fill={INK} />
+      <circle cx="150" cy="64" r="13" fill={INK} />
+      <rect x="92" y="98" width="54" height="7" rx="3" fill={INK} />
+      <rect x="30" y="130" width="10" height="66" rx="3" fill={INK} />
+    </g>
+  );
+}
+
+function HiHat({ color }) {
+  return (
+    <g>
+      <line x1="100" y1="84" x2="100" y2="196" stroke={INK} strokeWidth="5" />
+      <line x1="100" y1="196" x2="58" y2="222" stroke={INK} strokeWidth="5" />
+      <line x1="100" y1="196" x2="142" y2="222" stroke={INK} strokeWidth="5" />
+      <rect x="84" y="212" width="32" height="10" rx="3" fill={color} />
+      <ellipse cx="100" cy="74" rx="62" ry="10" fill="#c9a24a" />
+      <ellipse cx="100" cy="86" rx="62" ry="10" fill="#b38b35" />
+      <ellipse cx="100" cy="74" rx="10" ry="3" fill="#8a6a26" />
+      <rect x="92" y="150" width="16" height="10" rx="3" fill={color} />
+    </g>
+  );
+}
+
 const ART = {
   electric: Electric,
   acoustic: Acoustic,
@@ -326,6 +357,8 @@ const ART = {
   dynamicmic: DynamicMic,
   condensermic: CondenserMic,
   usbmic: UsbMic,
+  kickpedal: KickPedal,
+  hihat: HiHat,
 };
 
 const categoryColor = {

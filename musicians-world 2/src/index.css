@@ -635,6 +635,10 @@ input {
     column-gap: 1.25rem;
   }
 
+  .filter-group:first-of-type .filter-option:has(.subfilter) {
+    flex-basis: 100%;
+  }
+
   .filter-group:first-of-type legend {
     width: 100%;
   }
@@ -955,4 +959,15 @@ input {
 
 .lesson-actions {
   grid-area: actions;
+}
+
+.subfilter {
+  margin: 0 0 0.25rem 1.6rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--rule);
+}
+
+.subfilter label {
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
 }

@@ -36,10 +36,20 @@ export default function Browse() {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [leftHandedOnly, setLeftHandedOnly] = useState(false);
+  const [guitarTypes, setGuitarTypes] = useState([]);
+  const guitarsActive = activeCategories.includes("Guitars");
 
   const toggleCategory = (category) => {
+    const removing = activeCategories.includes(category);
     setActiveCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
+    );
+    if (category === "Guitars" && removing) setGuitarTypes([]);
+  };
+
+  const toggleGuitarType = (type) => {
+    setGuitarTypes((prev) =>
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
     );
   };
 
@@ -48,6 +58,7 @@ export default function Browse() {
     setMinPrice("");
     setMaxPrice("");
     setLeftHandedOnly(false);
+    setGuitarTypes([]);
   };
 
   const clearSearch = () => {
@@ -64,9 +75,19 @@ export default function Browse() {
       const max = maxPrice === "" ? Infinity : Number(maxPrice);
       const matchesPrice = product.price >= min && product.price <= max;
       const matchesHand = !leftHandedOnly || product.leftHanded;
-      return matchesCategory && matchesPrice && matchesHand && matchesQuery(product, query);
+      const matchesGuitarType =
+        product.category !== "Guitars" ||
+        guitarTypes.length === 0 ||
+        guitarTypes.includes(product.type);
+      return (
+        matchesCategory &&
+        matchesPrice &&
+        matchesHand &&
+        matchesGuitarType &&
+        matchesQuery(product, query)
+      );
     });
-  }, [activeCategories, minPrice, maxPrice, leftHandedOnly, query]);
+  }, [activeCategories, minPrice, maxPrice, leftHandedOnly, guitarTypes, query]);
 
   const count = filteredProducts.length;
   const itemWord = count === 1 ? "item" : "items";
@@ -80,14 +101,33 @@ export default function Browse() {
           <fieldset className="filter-group">
             <legend>Category</legend>
             {categories.map((category) => (
-              <label key={category}>
-                <input
-                  type="checkbox"
-                  checked={activeCategories.includes(category)}
-                  onChange={() => toggleCategory(category)}
-                />
-                {category}
-              </label>
+              <div key={category} className="filter-option">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={activeCategories.includes(category)}
+                    onChange={() => toggleCategory(category)}
+                  />
+                  {category}
+                </label>
+                {category === "Guitars" && guitarsActive && (
+                  <div className="subfilter" role="group" aria-label="Guitar type">
+                    {[
+                      ["electric", "Electric"],
+                      ["acoustic", "Acoustic"],
+                    ].map(([value, label]) => (
+                      <label key={value}>
+                        <input
+                          type="checkbox"
+                          checked={guitarTypes.includes(value)}
+                          onChange={() => toggleGuitarType(value)}
+                        />
+                        {label}
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </fieldset>
 
@@ -115,7 +155,7 @@ export default function Browse() {
           </fieldset>
 
           <fieldset className="filter-group">
-            <legend>Guitar options</legend>
+            <legend>Handedness</legend>
             <label>
               <input
                 type="checkbox"
