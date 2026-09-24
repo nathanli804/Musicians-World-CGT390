@@ -6,7 +6,7 @@ export default function Lessons() {
   return (
     <>
       <h1 className="section-heading">Lessons</h1>
-      <p style={{ maxWidth: "60ch", marginBottom: "1.5rem", color: "#514a3d" }}>
+      <p className="lesson-intro">
         Book time with an instructor to work on technique, songwriting, or
         recording. All lessons are held in-store or online.
       </p>
