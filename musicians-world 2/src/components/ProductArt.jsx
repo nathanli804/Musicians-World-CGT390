@@ -186,6 +186,130 @@ function Pedal({ color }) {
   );
 }
 
+
+function DJController({ color }) {
+  return (
+    <g>
+      <rect x="14" y="78" width="172" height="96" rx="10" fill={INK} />
+      <circle cx="52" cy="122" r="28" fill={color} />
+      <circle cx="52" cy="122" r="20" fill="#2c2926" />
+      <circle cx="52" cy="122" r="4" fill={HEAD} />
+      <circle cx="148" cy="122" r="28" fill={color} />
+      <circle cx="148" cy="122" r="20" fill="#2c2926" />
+      <circle cx="148" cy="122" r="4" fill={HEAD} />
+      <rect x="92" y="92" width="4" height="40" rx="2" fill="#6b6b6b" />
+      <rect x="104" y="92" width="4" height="40" rx="2" fill="#6b6b6b" />
+      <rect x="88" y="104" width="12" height="7" rx="1" fill={HEAD} />
+      <rect x="100" y="116" width="12" height="7" rx="1" fill={HEAD} />
+      <rect x="86" y="146" width="28" height="4" rx="2" fill="#6b6b6b" />
+      <rect x="95" y="142" width="10" height="12" rx="1" fill={HEAD} />
+      {[26, 40, 132, 146].map((x) => (
+        <rect key={x} x={x} y="158" width="11" height="8" rx="2" fill={color} opacity="0.8" />
+      ))}
+    </g>
+  );
+}
+
+function Turntable({ color }) {
+  return (
+    <g>
+      <rect x="18" y="56" width="164" height="136" rx="8" fill={color} />
+      <circle cx="90" cy="124" r="56" fill="#b9b9b9" />
+      <circle cx="90" cy="124" r="50" fill="#1b1917" />
+      <circle cx="90" cy="124" r="40" fill="none" stroke="#2f2c29" strokeWidth="2" />
+      <circle cx="90" cy="124" r="28" fill="none" stroke="#2f2c29" strokeWidth="2" />
+      <circle cx="90" cy="124" r="15" fill={HEAD} />
+      <circle cx="90" cy="124" r="3" fill={INK} />
+      <circle cx="160" cy="78" r="9" fill="#b9b9b9" />
+      <path d="M160 78 L162 140 L132 160" fill="none" stroke="#d9d9d9" strokeWidth="4" strokeLinecap="round" />
+      <rect x="124" y="156" width="14" height="8" rx="2" fill={INK} transform="rotate(-35 131 160)" />
+      <rect x="164" y="150" width="8" height="32" rx="2" fill={INK} />
+      <circle cx="34" cy="176" r="6" fill={HEAD} />
+    </g>
+  );
+}
+
+function Headphones({ color }) {
+  return (
+    <g>
+      <path d="M44 142 C44 60 156 60 156 142" fill="none" stroke={INK} strokeWidth="12" strokeLinecap="round" />
+      <path d="M52 128 C52 76 148 76 148 128" fill="none" stroke={color} strokeWidth="5" strokeLinecap="round" />
+      <rect x="26" y="124" width="40" height="64" rx="18" fill={color} />
+      <rect x="54" y="132" width="14" height="48" rx="6" fill={INK} />
+      <rect x="134" y="124" width="40" height="64" rx="18" fill={color} />
+      <rect x="132" y="132" width="14" height="48" rx="6" fill={INK} />
+      <path d="M46 188 C46 214 90 206 100 222" fill="none" stroke={INK} strokeWidth="3" />
+    </g>
+  );
+}
+
+function MicGrille({ cx, cy, r }) {
+  const lines = [];
+  for (let i = -3; i <= 3; i++) {
+    lines.push(<line key={`a${i}`} x1={cx + i * (r / 4)} y1={cy - r} x2={cx + i * (r / 4)} y2={cy + r} stroke={INK} strokeWidth="1.2" opacity="0.55" />);
+    lines.push(<line key={`b${i}`} x1={cx - r} y1={cy + i * (r / 4)} x2={cx + r} y2={cy + i * (r / 4)} stroke={INK} strokeWidth="1.2" opacity="0.55" />);
+  }
+  return lines;
+}
+
+function DynamicMic({ color }) {
+  return (
+    <g transform="rotate(-24 100 120)">
+      <defs>
+        <clipPath id="dyn-grille">
+          <circle cx="100" cy="62" r="32" />
+        </clipPath>
+      </defs>
+      <path d="M100 196 C100 214 120 218 128 228" fill="none" stroke={INK} strokeWidth="4" />
+      <path d="M78 92 L122 92 L108 196 L92 196 Z" fill={color} />
+      <rect x="84" y="88" width="32" height="10" rx="3" fill={INK} />
+      <rect x="93" y="150" width="14" height="6" rx="2" fill={INK} opacity="0.5" />
+      <circle cx="100" cy="62" r="32" fill="#c4c4c4" />
+      <g clipPath="url(#dyn-grille)">
+        <MicGrille cx={100} cy={62} r={32} />
+      </g>
+      <circle cx="100" cy="62" r="32" fill="none" stroke="#8d8d8d" strokeWidth="2" />
+    </g>
+  );
+}
+
+function CondenserMic({ color }) {
+  return (
+    <g>
+      <line x1="100" y1="170" x2="100" y2="214" stroke={INK} strokeWidth="5" />
+      <rect x="70" y="210" width="60" height="8" rx="4" fill={INK} />
+      <circle cx="100" cy="112" r="56" fill="none" stroke={INK} strokeWidth="4" />
+      <line x1="44" y1="112" x2="72" y2="112" stroke={INK} strokeWidth="3" />
+      <line x1="128" y1="112" x2="156" y2="112" stroke={INK} strokeWidth="3" />
+      <rect x="72" y="36" width="56" height="134" rx="28" fill={color} />
+      <rect x="78" y="42" width="44" height="64" rx="22" fill="#c4c4c4" />
+      {[52, 60, 68, 76, 84, 92, 100].map((y) => (
+        <line key={y} x1="80" y1={y} x2="120" y2={y} stroke={INK} strokeWidth="1.2" opacity="0.55" />
+      ))}
+      <rect x="72" y="110" width="56" height="5" fill={INK} opacity="0.4" />
+      <circle cx="100" cy="134" r="4" fill={HEAD} />
+    </g>
+  );
+}
+
+function UsbMic({ color }) {
+  return (
+    <g>
+      <ellipse cx="100" cy="210" rx="54" ry="10" fill={INK} />
+      <rect x="95" y="166" width="10" height="44" fill={INK} />
+      <path d="M70 128 C70 176 130 176 130 128" fill="none" stroke={INK} strokeWidth="5" />
+      <rect x="74" y="40" width="52" height="118" rx="26" fill={color} />
+      <rect x="80" y="46" width="40" height="58" rx="20" fill="#c4c4c4" />
+      {[56, 64, 72, 80, 88, 96].map((y) => (
+        <line key={y} x1="82" y1={y} x2="118" y2={y} stroke={INK} strokeWidth="1.2" opacity="0.55" />
+      ))}
+      <circle cx="100" cy="124" r="7" fill={INK} />
+      <circle cx="100" cy="142" r="3" fill="#7fd1a0" />
+      <path d="M100 210 C120 222 150 218 170 226" fill="none" stroke={INK} strokeWidth="3" />
+    </g>
+  );
+}
+
 const ART = {
   electric: Electric,
   acoustic: Acoustic,
@@ -196,6 +320,12 @@ const ART = {
   synth: Synth,
   amp: Amp,
   pedal: Pedal,
+  djcontroller: DJController,
+  turntable: Turntable,
+  headphones: Headphones,
+  dynamicmic: DynamicMic,
+  condensermic: CondenserMic,
+  usbmic: UsbMic,
 };
 
 const categoryColor = {
@@ -203,6 +333,8 @@ const categoryColor = {
   Drums: "#2f5fb8",
   Keyboards: "#2e7a53",
   "Pedals & Amps": "#e5b52a",
+  "DJ Gear": "#6b3fb8",
+  Microphones: "#16857f",
 };
 
 export default function ProductArt({ product }) {

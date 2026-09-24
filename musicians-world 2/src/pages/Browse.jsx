@@ -11,6 +11,8 @@ const catClass = {
   Drums: "cat-drums",
   Keyboards: "cat-keyboards",
   "Pedals & Amps": "cat-pedals",
+  "DJ Gear": "cat-dj",
+  Microphones: "cat-mics",
 };
 
 function matchesQuery(product, q) {

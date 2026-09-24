@@ -1,4 +1,4 @@
-export const categories = ["Guitars", "Drums", "Keyboards", "Pedals & Amps"];
+export const categories = ["Guitars", "Drums", "Keyboards", "Pedals & Amps", "DJ Gear", "Microphones"];
 
 export const products = [
   {
@@ -146,5 +146,77 @@ export const products = [
     blurb: "A spring-style reverb pedal with a wide, adjustable decay.",
     description:
       "The Halden Reverb Tank emulates the splashy, slightly chaotic character of a spring reverb tank, with a decay control that ranges from a short slap to a long, ambient wash.",
+  },
+  {
+    id: "pulse-two-channel-controller",
+    name: "Pulse Two-Channel Controller",
+    category: "DJ Gear",
+    price: 299,
+    type: "djcontroller",
+    rating: 4.5,
+    reviewCount: 88,
+    blurb: "A compact 2-channel controller with full-size jog wheels.",
+    description:
+      "The Pulse puts two decks and a mixer in a bag-friendly chassis, with full-size jog wheels that feel like the club gear you will graduate to. A built-in audio interface and headphone cue mean you only need a laptop and speakers to start mixing.",
+  },
+  {
+    id: "orbit-direct-drive-turntable",
+    name: "Orbit Direct-Drive Turntable",
+    category: "DJ Gear",
+    price: 349,
+    type: "turntable",
+    rating: 4.6,
+    reviewCount: 51,
+    blurb: "A high-torque turntable built for scratching and beat-matching.",
+    description:
+      "The Orbit's direct-drive motor gets the platter to speed almost instantly, so backspins and scratches stay tight. An adjustable pitch fader and S-shaped tonearm make it just as comfortable for careful vinyl listening at home.",
+  },
+  {
+    id: "cueline-studio-headphones",
+    name: "Cueline Studio DJ Headphones",
+    category: "DJ Gear",
+    price: 129,
+    type: "headphones",
+    rating: 4.4,
+    reviewCount: 143,
+    blurb: "Closed-back headphones with swiveling cups for one-ear cueing.",
+    description:
+      "Cueline's closed-back cups block out booth noise so you can hear the next track clearly, and each cup swivels flat for one-ear monitoring. The coiled cable and replaceable ear pads are built to survive years of gigs.",
+  },
+  {
+    id: "stagehand-dynamic-vocal-mic",
+    name: "Stagehand Dynamic Vocal Mic",
+    category: "Microphones",
+    price: 99,
+    type: "dynamicmic",
+    rating: 4.7,
+    reviewCount: 210,
+    blurb: "A durable handheld vocal mic that rejects stage noise.",
+    description:
+      "The Stagehand's cardioid pattern focuses on your voice and ignores the drums behind you, which keeps feedback under control on small stages. Its steel grille and rugged body shrug off drops, making it a safe first mic for any band.",
+  },
+  {
+    id: "lumen-condenser-mic",
+    name: "Lumen Large-Diaphragm Condenser",
+    category: "Microphones",
+    price: 229,
+    type: "condensermic",
+    rating: 4.5,
+    reviewCount: 67,
+    blurb: "A studio condenser with a detailed, airy top end.",
+    description:
+      "The Lumen captures vocals and acoustic instruments with clear, natural detail that sits easily in a mix. It ships with a shock mount to isolate it from stand rumble and needs 48V phantom power from your interface.",
+  },
+  {
+    id: "castline-usb-podcast-mic",
+    name: "Castline USB Podcast Mic",
+    category: "Microphones",
+    price: 139,
+    type: "usbmic",
+    rating: 4.3,
+    reviewCount: 122,
+    blurb: "A plug-and-play USB mic for podcasts and home recording.",
+    description:
+      "Castline plugs straight into a computer with no interface required, and its built-in headphone jack lets you hear yourself with zero delay. The weighted desk stand keeps it steady for podcasts, streaming, and quick demo recordings.",
   },
 ];
