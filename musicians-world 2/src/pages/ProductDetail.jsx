@@ -91,7 +91,7 @@ export default function ProductDetail() {
   return (
     <div className="product-detail">
       <div className={`product-art large ${catClass[product.category]}`}>
-        <ProductArt product={product} />
+        <ProductArt product={product} describe />
       </div>
       <div className="product-info">
         <p className="category-label">

@@ -5,6 +5,7 @@ import { products, categories } from "../data/products";
 import { usePageTitle } from "../lib/usePageTitle";
 import ProductArt from "../components/ProductArt";
 import StarRating from "../components/StarRating";
+import { skipTo } from "../lib/skipTo";
 
 const catClass = {
   Guitars: "cat-guitars",
@@ -96,7 +97,10 @@ export default function Browse() {
     <>
       <h1 className="section-heading">{query ? "Search results" : "Browse gear"}</h1>
       <div className="browse-layout">
-        <aside className="filter-panel">
+        <aside className="filter-panel" aria-label="Filters">
+          <a href="#results" className="skip-link skip-link--inline" onClick={skipTo("results")}>
+            Skip to results
+          </a>
           <h2>Filters</h2>
           <fieldset className="filter-group">
             <legend>Category</legend>
@@ -171,7 +175,7 @@ export default function Browse() {
           </button>
         </aside>
 
-        <div>
+        <section id="results" className="results" tabIndex={-1} aria-label="Results">
           <div className="result-bar">
             <p className="result-count" role="status">
               {query ? (
@@ -242,7 +246,7 @@ export default function Browse() {
               ))}
             </div>
           )}
-        </div>
+        </section>
       </div>
     </>
   );

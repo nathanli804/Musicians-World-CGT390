@@ -70,6 +70,48 @@ input {
   outline-offset: 3px;
 }
 
+/* Skip links: hidden until focused by keyboard */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-control);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.skip-link--inline {
+  position: static;
+  display: block;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link--inline:focus {
+  width: auto;
+  height: auto;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  clip: auto;
+}
+
+#main-content:focus,
+.results:focus {
+  outline: none;
+}
+
 .app-shell {
   max-width: 1140px;
   margin: 0 auto;

@@ -6,6 +6,7 @@ import Browse from "./pages/Browse";
 import ProductDetail from "./pages/ProductDetail";
 import Lessons from "./pages/Lessons";
 import { track } from "./lib/analytics";
+import { skipTo } from "./lib/skipTo";
 
 function BrowseRoute() {
   const location = useLocation();
@@ -33,8 +34,11 @@ function PageViewTracker() {
 export default function App() {
   return (
     <div className="app-shell">
+      <a href="#main-content" className="skip-link" onClick={skipTo("main-content")}>
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/browse" element={<BrowseRoute />} />

@@ -370,13 +370,58 @@ const categoryColor = {
   Microphones: "#16857f",
 };
 
-export default function ProductArt({ product }) {
+const colorName = {
+  Guitars: "Orange",
+  Drums: "Blue",
+  Keyboards: "Green",
+  "Pedals & Amps": "Yellow",
+  "DJ Gear": "Purple",
+  Microphones: "Teal",
+};
+
+const drawingDescription = {
+  electric: "electric guitar shown at an angle, with two pickups and a bridge",
+  acoustic: "acoustic guitar shown at an angle, with a round sound hole",
+  drumkit: "drum kit with toms and cymbals",
+  snare: "snare drum",
+  pad: "electronic drum pad",
+  piano: "digital piano keyboard",
+  synth: "synthesizer keyboard",
+  amp: "guitar amplifier",
+  pedal: "effects pedal",
+  djcontroller: "DJ controller",
+  turntable: "turntable",
+  headphones: "pair of headphones",
+  dynamicmic: "handheld dynamic microphone",
+  condensermic: "studio condenser microphone",
+  usbmic: "USB microphone",
+  kickpedal: "bass drum kick pedal",
+  hihat: "hi-hat cymbal stand",
+};
+
+export function describeProductArt(product) {
+  const color = colorName[product.category] || "";
+  const what = drawingDescription[product.type] || drawingDescription.pedal;
+  const article = /^[aeiou]/i.test(what) ? "an" : "a";
+  return `${color} illustration of ${article} ${what}`.trim();
+}
+
+export default function ProductArt({ product, describe = false }) {
   if (product.photo) {
-    return <img className="product-photo" src={product.photo} alt={product.name} />;
+    return (
+      <img
+        className="product-photo"
+        src={product.photo}
+        alt={describe ? product.photoAlt || describeProductArt(product) : ""}
+      />
+    );
   }
   const Drawing = ART[product.type] || Pedal;
+  const a11y = describe
+    ? { role: "img", "aria-label": describeProductArt(product) }
+    : { "aria-hidden": "true" };
   return (
-    <svg className="product-svg" viewBox="0 0 200 240" aria-hidden="true" focusable="false">
+    <svg className="product-svg" viewBox="0 0 200 240" focusable="false" {...a11y}>
       <Drawing color={categoryColor[product.category]} />
     </svg>
   );
