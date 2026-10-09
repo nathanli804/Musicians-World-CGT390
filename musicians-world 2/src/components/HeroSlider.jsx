@@ -8,7 +8,7 @@ const slides = [
     text: "Browse gear by category and price, or book a lesson to get more out of what you already own.",
     cta: "Browse gear",
     to: "/browse",
-    image: "/hero.jpg",
+    image: true,
   },
   {
     id: "lessons",
@@ -16,7 +16,6 @@ const slides = [
     text: "One-on-one and small-group lessons, from first chords to home recording. Prices are listed up front.",
     cta: "See lessons",
     to: "/lessons",
-    image: "/hero-2.jpg",
   },
   {
     id: "tone",
@@ -24,7 +23,6 @@ const slides = [
     text: "Overdrive, reverb, and tube amps that sound great at bedroom volume.",
     cta: "Shop pedals & amps",
     to: `/browse?category=${encodeURIComponent("Pedals & Amps")}`,
-    image: "/hero-3.jpg",
   },
 ];
 
@@ -67,13 +65,25 @@ export default function HeroSlider() {
             <div
               key={slide.id}
               className={`hero-slide${active ? " is-active" : ""}`}
-              style={{ "--slide-image": `url(${slide.image})` }}
               role="group"
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
               aria-hidden={!active}
               inert={!active}
             >
+              {slide.image && (
+                <img
+                  className="hero-bg"
+                  src="/hero-1024.webp"
+                  srcSet="/hero-640.webp 640w, /hero-1024.webp 1024w, /hero-1600.webp 1600w"
+                  sizes="(max-width: 1188px) calc(100vw - 48px), 1140px"
+                  width="1600"
+                  height="1067"
+                  alt=""
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                  decoding="async"
+                />
+              )}
               <div className="hero-content">
                 <Heading className="hero-heading">{slide.heading}</Heading>
                 <p>{slide.text}</p>

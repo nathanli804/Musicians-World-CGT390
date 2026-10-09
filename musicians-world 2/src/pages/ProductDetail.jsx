@@ -103,7 +103,6 @@ export default function ProductDetail() {
         <h1>{product.name}</h1>
         <StarRating rating={product.rating} count={product.reviewCount} />
         <div className="price-tag">${product.price}</div>
-        <p>{product.description}</p>
         <button className="add-to-cart" onClick={handleAddToCart} disabled={added}>
           {added ? "Added to Cart" : "Add to Cart"}
         </button>
@@ -112,6 +111,7 @@ export default function ProductDetail() {
             {product.name} was added to your cart.
           </p>
         )}
+        <p>{product.description}</p>
         <Link to="/browse" className="back-link">
           ← Back to browse
         </Link>
