@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 // Source of truth for lesson requests.
-// Production: Upstash Redis (Vercel Marketplace) via its REST API.
+// Production: Redis via REDIS_URL (Vercel Redis integration), or Upstash via its REST API.
 // Local dev: a JSON file in .data/ so records survive a server restart.
 
 const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
@@ -87,7 +87,47 @@ function fileStore() {
   };
 }
 
+// Vercel's Redis integration provides a single REDIS_URL (redis:// or rediss://).
+// Reuse one connection across warm invocations of the function.
+let tcpClient;
+async function tcp() {
+  if (!tcpClient) {
+    const { createClient } = await import("redis");
+    const client = createClient({ url: process.env.REDIS_URL });
+    client.on("error", (err) => console.error("Redis error", err));
+    tcpClient = client.connect().then(() => client).catch((err) => {
+      tcpClient = undefined;
+      throw err;
+    });
+  }
+  return tcpClient;
+}
+
+function tcpStore() {
+  return {
+    kind: "redis-tcp",
+    async claimPending(lessonId, email, id) {
+      return (await (await tcp()).set(dupKey(lessonId, email), id, { NX: true })) === "OK";
+    },
+    async releasePending(lessonId, email) {
+      await (await tcp()).del(dupKey(lessonId, email));
+    },
+    async put(record) {
+      await (await tcp()).hSet(HASH, record.id, JSON.stringify(record));
+    },
+    async get(id) {
+      const raw = await (await tcp()).hGet(HASH, id);
+      return raw ? JSON.parse(raw) : null;
+    },
+    async list() {
+      const all = await (await tcp()).hGetAll(HASH);
+      return Object.values(all).map((v) => JSON.parse(v));
+    },
+  };
+}
+
 export function getStore() {
+  if (process.env.REDIS_URL) return tcpStore();
   if (REDIS_URL && REDIS_TOKEN) return redisStore();
   // A deployed function's filesystem is not durable, so refuse instead of losing data silently.
   if (process.env.VERCEL) return null;

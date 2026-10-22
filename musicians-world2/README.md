@@ -13,14 +13,15 @@ product data are made up for this assignment.
 ## Run locally
 ```
 npm install
-npm run dev:api   # terminal 1: booking API on :3001 (saves to .data/)
+npm run dev:api   # terminal 1: booking API on :3001 (saves to .data/, or Redis if REDIS_URL is set)
 npm run dev       # terminal 2: site on :5173, proxies /api to :3001
 ```
 Then open the local URL Vite prints (usually http://localhost:5173).
 Locally the staff key is `dev-staff-key`.
 
 ## Lesson booking API
-Vercel Functions in `api/`. Bookings are stored in Upstash Redis.
+Vercel Functions in `api/`. Bookings are stored in Redis (`REDIS_URL` from Vercel's
+Redis integration, or Upstash REST variables).
 
 - `POST /api/lesson-requests` (public): create a request.
   Body: `lessonId`, `name`, `email`, `preferredTime`
@@ -35,8 +36,9 @@ Errors: 400 invalid input, 401 missing credentials, 404 not found or not yours,
 503 storage not configured.
 
 ### Vercel setup
-1. Project → Storage → add **Upstash for Redis** (free) and connect it to this
-   project. That adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
+1. Project → Storage → add a **Redis** database and connect it to this project.
+   That adds `REDIS_URL`. (Upstash's `UPSTASH_REDIS_REST_URL` /
+   `UPSTASH_REDIS_REST_TOKEN` also work.)
 2. Project → Settings → Environment Variables → add `MW_STAFF_KEY` (any long random string).
 3. Redeploy.
 
