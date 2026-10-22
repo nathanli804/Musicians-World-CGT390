@@ -13,9 +13,32 @@ product data are made up for this assignment.
 ## Run locally
 ```
 npm install
-npm run dev
+npm run dev:api   # terminal 1: booking API on :3001 (saves to .data/)
+npm run dev       # terminal 2: site on :5173, proxies /api to :3001
 ```
 Then open the local URL Vite prints (usually http://localhost:5173).
+Locally the staff key is `dev-staff-key`.
+
+## Lesson booking API
+Vercel Functions in `api/`. Bookings are stored in Upstash Redis.
+
+- `POST /api/lesson-requests` (public): create a request.
+  Body: `lessonId`, `name`, `email`, `preferredTime`
+  (`weekday-morning` | `weekday-afternoon` | `weekday-evening` | `weekend`), optional `note`.
+  Returns 201 with the request and a one-time `manageToken`.
+- `GET /api/lesson-requests/{id}` (owner via `X-Manage-Token`, or staff): view one request.
+- `DELETE /api/lesson-requests/{id}` (owner or staff): cancel a pending request.
+- `GET /api/lesson-requests` (staff, `Authorization: Bearer <MW_STAFF_KEY>`): list all.
+
+Errors: 400 invalid input, 401 missing credentials, 404 not found or not yours,
+409 duplicate pending request / already cancelled, 415 not JSON, 422 unknown lesson,
+503 storage not configured.
+
+### Vercel setup
+1. Project → Storage → add **Upstash for Redis** (free) and connect it to this
+   project. That adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
+2. Project → Settings → Environment Variables → add `MW_STAFF_KEY` (any long random string).
+3. Redeploy.
 
 ## Build
 ```
@@ -33,10 +56,9 @@ npm run preview
    production.
 
 ## Known limitations (baseline stage)
-- No backend/persistence — product and lesson data are hardcoded in
-  `src/data/`.
+- Product and lesson catalog data are hardcoded in `src/data/`. Lesson
+  booking requests are stored by the API (see above).
 - No images — category/product "images" are colored placeholder blocks.
-- No cart, checkout, or lesson booking flow yet — filtering is the only
-  interactive feature at this stage.
+- No cart or checkout yet. No rate limiting on the booking API.
 - Not yet reviewed for accessibility, SEO, or content polish — that's
   planned for later labs.

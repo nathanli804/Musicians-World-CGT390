@@ -1091,3 +1091,65 @@ input {
   font-size: 0.9rem;
   padding: 0.25rem 0;
 }
+
+/* Lesson booking form */
+.booking-form {
+  display: grid;
+  gap: 0.3rem;
+  max-width: 26rem;
+  margin-top: 1rem;
+}
+
+.booking-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.booking-form input:focus-visible,
+.booking-form select:focus-visible,
+.booking-form textarea:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: var(--signal-dark);
+}
+
+.form-message {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--signal-dark);
+}
+
+.booking-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.text-button {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--steel);
+  text-decoration: underline;
+  cursor: pointer;
+}
