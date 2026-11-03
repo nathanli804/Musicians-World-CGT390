@@ -1,0 +1,14 @@
+{
+  "name": "musicians-world-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "inspect": "npx @modelcontextprotocol/inspector node server.mjs",
+    "inspect:local": "MW_API_URL=http://localhost:3001 npx @modelcontextprotocol/inspector node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.4.0",
+    "zod": "^4.1.0"
+  }
+}

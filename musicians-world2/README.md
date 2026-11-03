@@ -64,3 +64,12 @@ npm run preview
 - No cart or checkout yet. No rate limiting on the booking API.
 - Not yet reviewed for accessibility, SEO, or content polish — that's
   planned for later labs.
+
+## Product search API + MCP server (CGT 390 MCP workshop)
+- `GET /api/products` (public, read-only): `q`, `category`, `minPrice`, `maxPrice`,
+  `leftHanded` (`true`/`false`), `limit` (1-20, default 10).
+  Returns `{ count, total, data: [...] }`. 400 for invalid filters.
+- MCP server in `mcp/` with one tool, `search_products`, that calls this endpoint.
+  `cd mcp && npm install && npm run inspect` (uses the Vercel URL), or
+  `npm run inspect:local` with `npm run dev:api` running.
+- VS Code / Copilot config: `.vscode/mcp.json`.

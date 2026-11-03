@@ -3,6 +3,7 @@
 import http from "node:http";
 import createOrList from "../api/lesson-requests/index.js";
 import byId from "../api/lesson-requests/[id].js";
+import products from "../api/products/index.js";
 
 const PORT = Number(process.env.API_PORT || 3001);
 
@@ -10,6 +11,7 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   req.query = Object.fromEntries(url.searchParams);
   try {
+    if (url.pathname === "/api/products") return await products(req, res);
     if (url.pathname === "/api/lesson-requests") return await createOrList(req, res);
     const m = url.pathname.match(/^\/api\/lesson-requests\/([^/]+)$/);
     if (m) {
